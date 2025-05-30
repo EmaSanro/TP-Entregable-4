@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
+body {
+    margin: 0;
+    max-height: 100%;
+}
+
+#contenedor,
+#cielo,
+#piso {
+    width: 100%;
+}
+
+#contenedor {
+    height: 100%;
+    overflow-y: hidden; 
+    overflow-x: hidden;
+}
+
+body {
+    overflow-y: hidden; 
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+#limit-time {
+    position: absolute;
+    font-family: "Pixelify Sans", sans-serif;
+    z-index: 7;
+    right: 100px;
+    top: 30px;
+    font-size: 1.1rem;
+}
+
+#score {
+    position: absolute;
+    z-index: 7;
+    font-size: 1.5rem;
+    top: -10px;
+    right: 100px;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+#vida {
+    background: url("images/corazon.png") repeat-x;
+    width: 252px;
+    height: 42px;
+    background-size: 42px 100%;
+    position: absolute;
+    margin: 10px;
+    z-index: 7;
+}
+
+#cielo {
+    height: 80%;
+    background: url("images/BackgroundImages/PNGFiles/sky.png") repeat-x;
+    background-size: 640px 100%;
+    position: absolute;
+    animation: sky 15s linear infinite;
+    z-index: 0;
+}
+
+#mountain3 {
+    background: url("images/BackgroundImages/PNGFiles/Moutains03.png") repeat-x;
+    background-size: 640px 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: sky 13s linear infinite;
+    z-index: 1;
+}
+
+#mountain2 {
+    background: url("images/BackgroundImages/PNGFiles/Moutains02.png") repeat-x;
+    background-size: 640px 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: sky 11s linear infinite;
+    z-index: 2;
+}
+
+#mountain1 {
+    background: url("images/BackgroundImages/PNGFiles/Moutains01.png") repeat-x;
+    background-size: 640px 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: sky 9s linear infinite;
+    z-index: 3;
+}
+
+#clouds {
+    background: url("images/BackgroundImages/PNGFiles/cloudStrips.png") repeat-x;
+    background-size: 640px 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: sky 14s linear infinite;
+    z-index: 4;
+}
+
+
+@keyframes sky {
+    0% {
+        background-position: 640px
+    }
+
+    100% {
+        background-position: 0
+    }
+}
+
+#piso {
+    height: 110%;
+    background: url("images/BackgroundImages/PNGFiles/Platform.png") repeat-x;
+    background-size: 640px 100%;
+    animation: floor 2s linear infinite;
+    position: absolute;
+    bottom: 0px;
+    z-index: 5;
+}
+
+@keyframes floor {
+    0% {
+        background-position: 640px
+    }
+
+    100% {
+        background-position: 0
+    }
+}
+
+#personaje {
+    position: absolute;
+    bottom: 15%;
+    left: 100px;
+    width: 100px;
+    height: 100px;
+    z-index: 6;
+}
+
+
+#personaje.correr {
+    background: url('images/Warrior/run.png') repeat-x;
+    background-size: 960px;
+    animation: correr .6s steps(8) infinite;
+}
+
+@keyframes correr {
+    from {
+        background-position: 0;
+    }
+    to {
+        background-position: -960px;
+    }
+}
+
+#personaje.saltar {
+    background: url('images/Warrior/jump.png') repeat-x;
+    position: absolute;
+    width: 90px;
+    height: 140px;
+    background-size: 720px;
+    animation: saltar .8s steps(6) forwards;
+    
+}
+
+@keyframes saltar {
+    0% {
+        bottom: 20%;
+        background-position: 0;
+    }
+
+    50% {
+        bottom: 45%;
+    }
+    100% {
+        bottom: 20%;
+        background-position: -720px;
+    }
+}
+
+#personaje.perder-vida {
+    background: url("images/Warrior/takehit.png") repeat-x;
+    opacity: 0;
+    width: 92px;
+    height: 100px;
+    background-size: 276px;
+    animation: blink 1s steps(3) forwards;
+}
+
+@keyframes blink{
+    0% {
+        background-position: 0;
+        opacity: 1;
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        background-position: -276px;
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        background-position: 0;
+        opacity: 1;
+    }
+}
+
+#personaje.morir {
+    background: url('images/Warrior/Death.png') repeat-x;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-size: 842px;
+    animation: morir 1.5s steps(7) forwards;
+}
+
+@keyframes morir {
+    from {
+        background-position: 0;
+    }
+    to {
+        background-position: -842px;
+    }
+}
+
+.enemigo {
+    position: absolute;
+    bottom: 15%;
+    width: 67.2px;
+    height: 57.6px;
+    background: url('images/Worm/wormWalk.png') repeat-x;
+    animation: enemigo 3s forwards linear, walk 1s steps(9) infinite;
+    background-size: 604.8px;
+    z-index: 6;
+}
+
+@keyframes walk {
+    from {
+        background-position: 0;
+    }
+    to {
+        background-position: -604.8px;
+    }
+}
+
+
+@keyframes enemigo {
+    from {
+      left: 100%;
+    }
+    to {
+      left: -10%;
+    }
+}
+
+.bonus {
+    background: url('images/Score.png');
+    font-size: 2rem;
+    font-family: "Pixelify Sans", sans-serif;
+    position: absolute;
+    bottom: 25%;
+    width: 50px;
+    height: 45px;
+    background-size: 50px;
+    z-index: 6;
+    animation: mover 3s forwards linear, aumentar 2s infinite;
+}
+
+@keyframes mover {
+    from {
+        left: 100%;
+    }
+    to{
+        left: -10%;
+    }
+}
+
+@keyframes aumentar {
+    0% {
+        transform: scale(1.3);
+    }
+    25% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    75% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.3);
+    }
+}
+
+
+/* Estilos del menu principal, de pausa y reinicio */
+
+#game {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: #08044d;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 7;
+}
+
+
+#menu, #pausa, #muerte {
+    display: block;
+    max-width: 300px;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.502);
+    border-radius: 10px;
+}
+
+#menu #start #start-button, #pausa .buttons-pause button, #muerte .buttons-pause button {
+    width: 250px;
+    margin-top: 15px;
+    border: none;
+    padding: 10px 60px;
+    border-radius: 8px;
+    background-color: rgb(243, 172, 110);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    cursor: pointer;
+    color: #000;
+}
+
+#menu hr {
+    border: 1px solid #08044d;
+}
+
+#menu #difficulty #diff {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#pausa, #muerte {
+    display: none;
+}

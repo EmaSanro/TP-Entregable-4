@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animacion</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio class='hidden' id='sound-hit'>
+        <source src='Sounds/hit-sound.mp3' type='audio/mpeg'>
+    </audio>
+    <audio class='hidden' id='music-bonus'>
+        <source src='Sounds/music-bonus.mp3' type='audio/mpeg'>
+    </audio>
+     <audio class='hidden' id="music-bg" loop>
+        <source src='Sounds/music-sound.mp3' type='audio/mpeg'/>
+    </audio>
+    <p id='score'></p>
+    <p id='limit-time'></p>
+    <div id='vida'></div>
+    <div id='game'>
+        <div id='menu'>
+            <h1>Desert Runner</h1>
+            <div id="difficulty">
+                <p>Selecciona la dificultad:</p>
+                <select name="diff" id="diff">
+                    <option value="easy">Facil</option>
+                    <option value="medium">Intermedio</option>
+                    <option value="hard">Dificil</option>
+                </select>
+            </div>
+            <div id="start">
+                <button id="start-button">Iniciar Juego</button>
+                <p>Presiona la tecla "Espacio" o "W" para iniciar el juego</p>
+            </div>
+            <hr>
+            <div id="controls">
+                <h3>Como jugar</h3>
+                <p>Presiona la tecla "Espacio" o "W" para saltar</p>
+                <p>Evita los enemigos y trata de agarrar la mayor cantidad de puntos posibles.</p>
+                <p>Tienes un limite de tiempo de 3 minutos para sobrevivir</p>
+                <p>O intenta obtener mas de 130 puntos para ganar el juego!</p>
+                <p>¡Espero que lo disfrutes!</p>
+            </div>
+        </div>
+        <div id="pausa">
+            <h1>Pausa</h1>
+            <div class='buttons-pause'>
+                <button type='button' id='play-btn'>Reanudar</button>
+                <button type='button' class='restart-btn'>Reiniciar Juego</button>
+                <button type='button' id='lobby-btn'>Menu Principal</button>
+            </div>
+        </div>
+        <div id="muerte">
+            <h1>Has Muerto!</h1>
+            <p>Tu puntuacion ha sido de: </p>
+            <p id='puntuacion'></p>
+            <div class="buttons-pause">
+                <button type="button" class='restart-btn'>Reiniciar</button>
+                <button type="button">Menu Principal</button>
+            </div>
+        </div>
+    </div>
+    <div id="contenedor">
+        <div id="cielo">
+        </div>
+            <div id='mountain3'></div>
+            <div id='mountain2'></div>
+            <div id='mountain1'></div>
+            <div id='clouds'></div>
+        <div id="personaje" class='correr'></div>
+        <div id="piso"></div>
+    </div>
+    
+    <script src="Personaje.js"></script>
+    <script src="Bonus.js"></script>
+    <script src="Warrior.js"></script>
+    <script src="Worm.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
