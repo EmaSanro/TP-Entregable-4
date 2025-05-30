@@ -320,7 +320,7 @@ body {
 }
 
 
-#menu, #pausa, #muerte {
+#menu, #pausa, #muerte, #gano {
     display: block;
     max-width: 300px;
     background: transparent;
@@ -330,7 +330,7 @@ body {
     border-radius: 10px;
 }
 
-#menu #start #start-button, #pausa .buttons-pause button, #muerte .buttons-pause button {
+#menu #start #start-button, #pausa .buttons-pause button, #muerte .buttons-pause button, #gano button {
     width: 250px;
     margin-top: 15px;
     border: none;
@@ -355,6 +355,6 @@ body {
     padding: 8px;
 }
 
-#pausa, #muerte {
+#pausa, #muerte, #gano {
     display: none;
 }

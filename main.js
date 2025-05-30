@@ -3,7 +3,7 @@ const vida = document.getElementById("vida");
 const startBtn = document.getElementById("start-button");
 const playBtn = document.getElementById("play-btn");
 const restartBtn = document.querySelectorAll(".restart-btn");
-const lobbyBtn = document.getElementById("lobby-btn");
+const lobbyBtn = document.querySelectorAll(".lobby-btn");
 const difficulty = document.getElementById("diff");
 const scoreDiv = document.getElementById('score');
 const timeDiv = document.getElementById('limit-time');
@@ -11,7 +11,7 @@ const timeDiv = document.getElementById('limit-time');
 let timeoutEnemiesId;
 let timeoutBonusId;
 let intervalTime;
-let tiempoTotal = 3 * 60;
+let tiempoTotal = 3 ;
 let animations = [];
 let warrior = new Warrior();
 let isStarted = false;
@@ -91,7 +91,9 @@ document.addEventListener('keydown', (e) => {
 
 startBtn.addEventListener('click', startGame); // Iniciar el juego mediante el boton de inicio principal o el de pausa
 playBtn.addEventListener('click', reanudarGame);
-lobbyBtn.addEventListener('click', goToLobby);
+
+for (const lobbBtn of lobbyBtn)
+	lobbBtn.addEventListener('click', goToLobby);
 
 for (const restBtn of restartBtn) {
 	restBtn.addEventListener('click', restartGame); // Reiniciar el juego desde el menu de pausa o cuando se muere 
@@ -140,9 +142,7 @@ function startGame() {
 	isPaused = false;
 	isStarted = true;
 	generarEnemigo(timeSpawnEnemiesMin, timeSpawnEnemiesMax);
-	// setTimeout(() => {
 	spawnBonus(timeSpawnBonus);
-	// }, 1000);
 	restarTiempo();
 	document.getElementById('menu').style.display = "none";
 	gameLoop();
@@ -192,12 +192,15 @@ function restartGame() {
 function goToLobby() {
 	reestablecerConfiguracion();
 	// Mostrar menu principal
+	timeDiv.innerHTML = `Tiempo Restante: 3min 00s`;
 	document.getElementById("menu").style.display = 'block';
 }
 
 // Funcion que reestablece la configuracion del juego (vidas, animaciones, bonus, enemigos, puntaje)
 function reestablecerConfiguracion() {
 	reanudarAnimaciones();
+	tiempoTotal = 3 * 60;
+	intervalTime = null;
 
 	// Eliminar TODOS los enemigos de la pantalla
 	eliminarTodosLosEnemigos();
@@ -215,6 +218,7 @@ function reestablecerConfiguracion() {
 	// Ocultar pantalla de muerte y pausa
 	document.getElementById("muerte").style.display = "none";
 	document.getElementById("pausa").style.display = "none";
+	document.getElementById("gano").style.display = "none";
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -245,7 +249,12 @@ function restarTiempo() {
 
       if (tiempoTotal < 0) {
         clearInterval(intervalTime);
-        timerDisplay.textContent = "¡Tiempo terminado!";
+        document.getElementById('gano').style.display = 'block';
+		document.getElementById('player-scored').innerHTML += ` <strong>${score} puntos</strong>!`
+		isStarted = false;
+		pausarAnimaciones();
+		clearTimeout(timeoutEnemiesId);
+		clearTimeout(timeoutBonusId);
       }
     }, 1000);
 }
@@ -284,6 +293,14 @@ function actualizarEstadoJuego() {
 			
 			if(!colisionaron) {
 				incrementarPuntuacion();
+				if(score == 10) {
+					isStarted = false;
+					clearInterval(intervalTime);
+					clearTimeout(timeoutEnemiesId);
+					clearTimeout(timeoutBonusId);
+					document.getElementById('gano').style.display = 'block';
+					document.getElementById('player-scored').innerHTML += ` ${score} puntos!.`
+				}
 			}
 		}
 	} else {
@@ -319,6 +336,7 @@ function muerteWarrior() {
 	};
 	clearTimeout(timeoutEnemiesId);
 	clearTimeout(timeoutBonusId);
+	clearInterval(intervalTime);
 	vida.style.width = vida.getBoundingClientRect().width - 42 + "px";
 }
 

@@ -42,7 +42,7 @@
                 <p>Presiona la tecla "Espacio" o "W" para saltar</p>
                 <p>Evita los enemigos y trata de agarrar la mayor cantidad de puntos posibles.</p>
                 <p>Tienes un limite de tiempo de 3 minutos para sobrevivir</p>
-                <p>O intenta obtener mas de 130 puntos para ganar el juego!</p>
+                <p>O intenta obtener mas de 100 puntos para ganar el juego!</p>
                 <p>¡Espero que lo disfrutes!</p>
             </div>
         </div>
@@ -51,7 +51,7 @@
             <div class='buttons-pause'>
                 <button type='button' id='play-btn'>Reanudar</button>
                 <button type='button' class='restart-btn'>Reiniciar Juego</button>
-                <button type='button' id='lobby-btn'>Menu Principal</button>
+                <button type='button' class='lobby-btn'>Menu Principal</button>
             </div>
         </div>
         <div id="muerte">
@@ -60,8 +60,16 @@
             <p id='puntuacion'></p>
             <div class="buttons-pause">
                 <button type="button" class='restart-btn'>Reiniciar</button>
-                <button type="button">Menu Principal</button>
+                <button type="button" class='lobby-btn'>Menu Principal</button>
             </div>
+        </div>
+        <div id="gano">
+            <h1>Has Ganado!!</h1>
+            <p>¡Felicitaciones has conseguido ganar el juego!</p>
+            <p id='player-scored'>Tu puntuacion ha sido de:</p>
+            <p>Deseas jugar de nuevo o ir al menu principal?</p>
+            <button type='button' class='restart-btn'>Reiniciar Juego</button>
+            <button type='button' class='lobby-btn'>Menu Principal</button>
         </div>
     </div>
     <div id="contenedor">
